@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class HomeCareSeeder extends Seeder
+class TransplanteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,8 +23,8 @@ class HomeCareSeeder extends Seeder
             DB::beginTransaction();
 
             $module = Module::create([
-                'name' => 'homecare',
-                'url' => 'url do homecare',
+                'name' => 'transplante',
+                'url' => 'url do transplante',
             ]);
 
             $admPermissions = [
@@ -62,51 +62,24 @@ class HomeCareSeeder extends Seeder
                 'password' => Hash::make('12345678'),
             ])->assignRole($role);
 
-            // $permissions = [
-            //     'voltar',
-            //     'download',
-            //     'paciente listar',
-            //     'paciente criar',
-            //     'paciente atualizar',
-            //     'paciente deletar',
-            //     'paciente validar',
-            //     'paciente acompanhantes',
-            //     'paciente laudos',
-            //     'solicitação listar',
-            //     'solicitação criar',
-            //     'solicitação atualizar',
-            //     'solicitação deletar',
-            //     'solicitação anexos',
-            //     'parecer listar',
-            //     'parecer criar',
-            //     'parecer atualizar',
-            //     'parecer deletar',
-            //     'parecer anexos',
-            //     'passagem listar',
-            //     'passagem criar',
-            //     'passagem atualizar',
-            //     'passagem deletar',
-            //     'passagem importar',
-            //     'ajuda de custo listar',
-            //     'ajuda de custo criar',
-            //     'ajuda de custo atualizar',
-            //     'ajuda de custo deletar',
-            //     'pagamento listar',
-            //     'pagamento criar',
-            //     'pagamento atualizar',
-            //     'pagamento deletar',
-            //     'consultar paciente',
-            //     'consultar arquivo'
-            // ];
+            $permissions = [
+                'voltar',
+                'download',
+                'paciente listar',
+                'paciente criar',
+                'paciente atualizar',
+                'paciente deletar',
+                'paciente validar',
+            ];
 
-            // foreach($permissions as $vlr) {
-            //     Permission::create([
-            //         'name'  => $module->name.'/'.$vlr,
-            //         'guard_name' => 'api',
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ]);
-            // }
+            foreach($permissions as $vlr) {
+                Permission::create([
+                    'name'  => $module->name.'/'.$vlr,
+                    'guard_name' => 'api',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
             
             UserModule::create([
                 'user_id' => $user->id,

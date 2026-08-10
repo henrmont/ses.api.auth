@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class TFDSeeder extends Seeder
+class JuridicoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,8 +22,8 @@ class TFDSeeder extends Seeder
             DB::beginTransaction();
 
             $module = Module::create([
-                'name' => 'tfd',
-                'url' => 'url do tfd',
+                'name' => 'juridico',
+                'url' => 'url do juridico',
             ]);
 
             $admPermissions = [
@@ -37,17 +37,6 @@ class TFDSeeder extends Seeder
                 'regra criar',
                 'regra atualizar',
                 'regra deletar',
-                'configuração listar',
-                'configuração atualizar',
-                'datasus listar',
-                'datasus criar',
-                'datasus atualizar',
-                'datasus deletar',
-                'datasus importar',
-                'unidade hospitalar listar',
-                'unidade hospitalar criar',
-                'unidade hospitalar atualizar',
-                'unidade hospitalar deletar',
             ];
 
             foreach($admPermissions as $vlr) {
@@ -80,30 +69,13 @@ class TFDSeeder extends Seeder
                 'paciente atualizar',
                 'paciente deletar',
                 'paciente validar',
-                'paciente acompanhantes',
                 'paciente laudos',
-                'solicitação listar',
-                'solicitação criar',
-                'solicitação atualizar',
-                'solicitação deletar',
-                'solicitação anexos',
-                'parecer listar',
-                'parecer criar',
-                'parecer atualizar',
-                'parecer deletar',
-                'passagem listar',
-                'passagem criar',
-                'passagem atualizar',
-                'passagem deletar',
-                'passagem importar',
-                'ajuda de custo listar',
-                'ajuda de custo criar',
-                'ajuda de custo atualizar',
-                'ajuda de custo deletar',
-                'pagamento listar',
-                'pagamento criar',
-                'pagamento atualizar',
-                'pagamento deletar',
+                'demanda judicial listar',
+                'demanda judicial criar',
+                'demanda judicial atualizar',
+                'demanda judicial deletar',
+                'demanda judicial anexos',
+                'demanda judicial exportar',
             ];
 
             foreach($permissions as $vlr) {

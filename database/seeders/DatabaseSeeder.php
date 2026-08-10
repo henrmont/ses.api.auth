@@ -18,8 +18,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TFDSeeder::class,
-            HomeCareSeeder::class,
-            StorageSeeder::class
+            HomecareSeeder::class,
+            TransplanteSeeder::class,
+            StorageSeeder::class,
+            JuridicoSeeder::class
         ]);
     }
 }
