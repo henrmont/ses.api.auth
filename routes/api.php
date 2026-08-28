@@ -11,6 +11,6 @@ Route::middleware(['api'])
     ->group(function () {
         Route::post('login', 'login')->name('login');
         Route::get('me', 'me')->name('me');
-        Route::post('logout', 'logout')->name('logout'); // Alterado para POST por ser boa prática
-        Route::post('refresh', 'refresh')->name('refresh'); // Alterado para POST por ser boa prática
+        Route::get('logout', 'logout')->name('logout'); // Alterado para POST por ser boa prática
+        Route::get('refresh', 'refresh')->name('refresh'); // Alterado para POST por ser boa prática
     });
