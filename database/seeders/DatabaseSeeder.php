@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TFDSeeder::class,
+            SISLICSeeder::class,
         ]);
     }
 
@@ -29,7 +30,7 @@ class DatabaseSeeder extends Seeder
      */
     private function ensureDatabasesExist(): void
     {
-        $databases = ['ses.auth', 'ses.core', 'ses.datasus', 'ses.storage', 'ses.tfd'];
+        $databases = ['ses.auth', 'ses.core', 'ses.datasus', 'ses.storage', 'ses.tfd', 'ses.sislic'];
 
         foreach ($databases as $dbName) {
             // Consulta no banco de sistema ('postgres_system') se a base já existe
