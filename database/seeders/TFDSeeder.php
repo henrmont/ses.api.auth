@@ -26,6 +26,12 @@ class TFDSeeder extends Seeder
                 'url' => 'url do tfd',
             ]);
 
+            $dbExists = DB::select("SELECT 1 FROM pg_database WHERE datname = ?", ["ses.{$module->name}"]);
+
+            if (empty($dbExists)) {
+                DB::statement("CREATE DATABASE \"ses.{$module->name}\";");
+            }
+
             $admPermissions = [
                 'usuário listar',
                 'usuário criar',

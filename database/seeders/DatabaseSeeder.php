@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TFDSeeder::class,
+            DATASUSSeeder::class,
             SISLICSeeder::class,
         ]);
     }
@@ -30,15 +31,12 @@ class DatabaseSeeder extends Seeder
      */
     private function ensureDatabasesExist(): void
     {
-        $databases = ['ses.auth', 'ses.core', 'ses.datasus', 'ses.storage', 'ses.tfd', 'ses.sislic'];
+        $databases = ['ses.auth', 'ses.core', 'ses.storage'];
 
         foreach ($databases as $dbName) {
-            // Consulta no banco de sistema ('postgres_system') se a base já existe
             $exists = DB::select("SELECT 1 FROM pg_database WHERE datname = ?", [$dbName]);
 
             if (empty($exists)) {
-                // No PostgreSQL, comandos CREATE DATABASE não aceitam Prepared Statements com parâmetros,
-                // portanto concatenamos a string usando aspas para suportar nomes com ponto ou caracteres especiais.
                 DB::statement("CREATE DATABASE \"{$dbName}\";");
             }
         }

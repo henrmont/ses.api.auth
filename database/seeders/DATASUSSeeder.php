@@ -5,14 +5,13 @@ namespace Database\Seeders;
 use App\Models\Module;
 use App\Models\User;
 use App\Models\UserModule;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class TransplanteSeeder extends Seeder
+class DATASUSSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,9 +22,15 @@ class TransplanteSeeder extends Seeder
             DB::beginTransaction();
 
             $module = Module::create([
-                'name' => 'transplante',
-                'url' => 'url do transplante',
+                'name' => 'datasus',
+                'url' => 'url do datasus',
             ]);
+
+            $dbExists = DB::select("SELECT 1 FROM pg_database WHERE datname = ?", ["ses.{$module->name}"]);
+
+            if (empty($dbExists)) {
+                DB::statement("CREATE DATABASE \"ses.{$module->name}\";");
+            }
 
             $admPermissions = [
                 'usuário listar',
@@ -38,6 +43,13 @@ class TransplanteSeeder extends Seeder
                 'regra criar',
                 'regra atualizar',
                 'regra deletar',
+                'configuração listar',
+                'configuração atualizar',
+                'datasus listar',
+                'datasus criar',
+                'datasus atualizar',
+                'datasus deletar',
+                'datasus importar',
             ];
 
             foreach($admPermissions as $vlr) {
@@ -62,25 +74,6 @@ class TransplanteSeeder extends Seeder
                 'password' => Hash::make('12345678'),
             ])->assignRole($role);
 
-            $permissions = [
-                'voltar',
-                'download',
-                'paciente listar',
-                'paciente criar',
-                'paciente atualizar',
-                'paciente deletar',
-                'paciente validar',
-            ];
-
-            foreach($permissions as $vlr) {
-                Permission::create([
-                    'name'  => $module->name.'/'.$vlr,
-                    'guard_name' => 'api',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-            
             UserModule::create([
                 'user_id' => $user->id,
                 'module_id' => $module->id,
