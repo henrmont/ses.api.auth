@@ -43,13 +43,6 @@ class DATASUSSeeder extends Seeder
                 'regra criar',
                 'regra atualizar',
                 'regra deletar',
-                'configuração listar',
-                'configuração atualizar',
-                'datasus listar',
-                'datasus criar',
-                'datasus atualizar',
-                'datasus deletar',
-                'datasus importar',
             ];
 
             foreach($admPermissions as $vlr) {
@@ -73,6 +66,23 @@ class DATASUSSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('12345678'),
             ])->assignRole($role);
+
+            $permissions = [
+                'sigtap listar',
+                'sigtap criar',
+                'sigtap atualizar',
+                'sigtap deletar',
+                'sigtap importar',
+            ];
+
+            foreach($permissions as $vlr) {
+                Permission::create([
+                    'name'  => $module->name.'/'.$vlr,
+                    'guard_name' => 'api',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
 
             UserModule::create([
                 'user_id' => $user->id,
