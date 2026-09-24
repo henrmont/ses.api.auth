@@ -45,15 +45,6 @@ class TFDSeeder extends Seeder
                 'regra deletar',
                 'configuração listar',
                 'configuração atualizar',
-                'datasus listar',
-                'datasus criar',
-                'datasus atualizar',
-                'datasus deletar',
-                'datasus importar',
-                'unidade hospitalar listar',
-                'unidade hospitalar criar',
-                'unidade hospitalar atualizar',
-                'unidade hospitalar deletar',
             ];
 
             foreach($admPermissions as $vlr) {
