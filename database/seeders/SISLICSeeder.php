@@ -43,10 +43,10 @@ class SISLICSeeder extends Seeder
                 'regra criar',
                 'regra atualizar',
                 'regra deletar',
-                'estação de trabalho listar',
-                'estação de trabalho criar',
-                'estação de trabalho atualizar',
-                'estação de trabalho deletar',
+                'local de trabalho listar',
+                'local de trabalho criar',
+                'local de trabalho atualizar',
+                'local de trabalho deletar',
             ];
 
             foreach($admPermissions as $vlr) {
