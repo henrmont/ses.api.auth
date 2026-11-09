@@ -26,12 +26,6 @@ class DATASUSSeeder extends Seeder
                 'url' => 'url do datasus',
             ]);
 
-            $dbExists = DB::select("SELECT 1 FROM pg_database WHERE datname = ?", ["ses.{$module->name}"]);
-
-            if (empty($dbExists)) {
-                DB::statement("CREATE DATABASE \"ses.{$module->name}\";");
-            }
-
             $admPermissions = [
                 'usuário listar',
                 'usuário criar',
