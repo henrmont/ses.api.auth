@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             TFDSeeder::class,
             DATASUSSeeder::class,
             SISLICSeeder::class,
+            SISTFDSeeder::class,
+            HOMECARESeeder::class,
         ]);
     }
     
